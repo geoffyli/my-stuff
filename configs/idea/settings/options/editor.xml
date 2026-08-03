@@ -1,0 +1,16 @@
+<application>
+  <!--
+    Global editor behavior. Curated recommendations, not a dump of defaults.
+    Drop into: <IDEA config>/options/editor.xml
+  -->
+  <component name="EditorSettings">
+    <!-- Ctrl/Cmd + mouse wheel changes font size -->
+    <option name="IS_WHEEL_FONTCHANGE_ENABLED" value="true" />
+    <!-- Ensure files end with a newline on save -->
+    <option name="ENSURE_NEWLINE_AT_EOF" value="true" />
+    <!-- Strip trailing whitespace on modified lines only (safest for diffs) -->
+    <option name="STRIP_TRAILING_SPACES" value="Changed" />
+    <!-- Show whitespace only in leading/inner positions -->
+    <option name="IS_WHITESPACES_SHOWN" value="false" />
+  </component>
+</application>

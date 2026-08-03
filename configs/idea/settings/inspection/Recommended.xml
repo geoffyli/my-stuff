@@ -1,0 +1,32 @@
+<component name="InspectionProjectProfileManager">
+  <!--
+    Tightened inspection profile for Java/Kotlin. Import via:
+    Settings > Editor > Inspections > gear > Import Profile > pick this file.
+    Then set it as the active profile. Only deltas from IDEA defaults are listed;
+    everything else inherits the built-in profile.
+  -->
+  <profile version="1.0">
+    <option name="myName" value="Recommended" />
+
+    <!-- Java: promote likely-bug patterns to WARNING/ERROR -->
+    <inspection_tool class="DataFlowIssue" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="NullableProblems" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ConstantValue" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ResultOfMethodCallIgnored" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="StringEquality" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="UnusedAssignment" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="OptionalGetWithoutIsPresent" enabled="true" level="WARNING" enabled_by_default="true" />
+
+    <!-- Encourage modern Java -->
+    <inspection_tool class="Convert2Diamond" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="Java8CollectionRemoveIf" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+
+    <!-- Kotlin: catch common nullability / idiom issues -->
+    <inspection_tool class="RedundantNullableReturnType" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="PlatformExtensionReceiverOfInline" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="UNUSED_VARIABLE" enabled="true" level="WARNING" enabled_by_default="true" />
+
+    <!-- Noise reducers: demote overly chatty defaults -->
+    <inspection_tool class="unused" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  </profile>
+</component>

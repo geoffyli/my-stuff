@@ -1,0 +1,43 @@
+<templateSet group="JavaKotlin">
+  <!--
+    Starter live templates for Java/Kotlin. Drop into:
+    <IDEA config>/templates/JavaKotlin.xml  (IDEA merges it into Live Templates)
+    Type the abbreviation + Tab in an applicable context.
+  -->
+
+  <!-- Java: SLF4J logger field -->
+  <template name="logger" value="private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger($CLASS$.class);"
+            description="SLF4J logger field" toReformat="true" toShortenFQNames="true">
+    <variable name="CLASS" expression="className()" defaultValue="" alwaysStopAt="false" />
+    <context><option name="JAVA_DECLARATION" value="true" /></context>
+  </template>
+
+  <!-- Java: main method -->
+  <template name="psvm" value="public static void main(String[] args) {&#10;    $END$&#10;}"
+            description="public static void main" toReformat="true" toShortenFQNames="true">
+    <context><option name="JAVA_DECLARATION" value="true" /></context>
+  </template>
+
+  <!-- Java: JUnit5 test method -->
+  <template name="test5" value="@org.junit.jupiter.api.Test&#10;void $NAME$() {&#10;    $END$&#10;}"
+            description="JUnit 5 test method" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="&quot;should&quot;" alwaysStopAt="true" />
+    <context><option name="JAVA_DECLARATION" value="true" /></context>
+  </template>
+
+  <!-- Kotlin: data class -->
+  <template name="dataclass" value="data class $NAME$(val $PROP$: $TYPE$)"
+            description="Kotlin data class" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="&quot;Foo&quot;" alwaysStopAt="true" />
+    <variable name="PROP" expression="" defaultValue="&quot;id&quot;" alwaysStopAt="true" />
+    <variable name="TYPE" expression="" defaultValue="&quot;String&quot;" alwaysStopAt="true" />
+    <context><option name="KOTLIN_TOPLEVEL" value="true" /><option name="KOTLIN_CLASS" value="true" /></context>
+  </template>
+
+  <!-- Kotlin: JUnit5 test -->
+  <template name="ktest" value="@org.junit.jupiter.api.Test&#10;fun `$NAME$`() {&#10;    $END$&#10;}"
+            description="Kotlin JUnit 5 test with backtick name" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="&quot;does something&quot;" alwaysStopAt="true" />
+    <context><option name="KOTLIN_CLASS" value="true" /></context>
+  </template>
+</templateSet>

@@ -1,0 +1,34 @@
+# IDEA config — never commit secrets or machine-local state.
+# See secrets.md for the full rationale.
+
+# License key
+idea.key
+*.key
+
+# AI-assistant tokens / local state
+options/github-copilot*.xml
+options/llm.*.xml
+options/AIAssistant*.xml
+options/grazie*.xml
+grazie/
+
+# Database credentials / drivers
+options/database*.xml
+options/dataSources*.xml
+dataSources.local.xml
+jdbc-drivers/
+
+# Machine-local paths & runtime state
+options/jdk.table.xml
+options/path.macros.xml
+options/recentProjects.xml
+options/trusted-paths.xml
+options/proxy.settings.xml
+options/updates.xml
+workspace/
+tasks/
+migration/
+*.db
+
+# Local override (your real machine tweaks, like vscode/settings.local.json)
+settings.local/
