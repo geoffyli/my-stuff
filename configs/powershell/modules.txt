@@ -1,0 +1,21 @@
+# PowerShell modules installed via Install-Module (PSGallery).
+# apply.ps1 installs these. Lines starting with # are ignored.
+
+# Autosuggestions + syntax highlighting + history search.
+# Ships with PS7; listed so 5.1 gets the modern version too.
+PSReadLine
+
+# Git branch/status in the prompt (replaces Oh My Zsh git plugin).
+posh-git
+
+# Icons in Get-ChildItem listings.
+Terminal-Icons
+
+# fzf integration for PSReadLine (Ctrl+t files, Ctrl+r history).
+# Requires the fzf binary (see tools.txt).
+PSFzf
+
+# atuin PowerShell keybinding module (requires the atuin binary in tools.txt).
+# NOTE: install name may differ / may be provided by the atuin binary itself;
+# see INSTALL.md. Left here so apply.ps1 attempts it and warns if unavailable.
+atuin

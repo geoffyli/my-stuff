@@ -4,3 +4,7 @@
 # VS Code config: machine-local secrets (never commit)
 configs/vscode/settings.local.json
 configs/vscode/settings.json.bak.*
+
+# PowerShell config: machine-local secrets (never commit)
+configs/powershell/profile.local.ps1
+configs/powershell/*.bak.*

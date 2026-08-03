@@ -1,0 +1,15 @@
+# CLI tools installed via winget (Windows Package Manager).
+# Format:  <winget-package-id>    # command it provides
+# apply.ps1 installs these with: winget install --id <id> -e --source winget
+# Lines starting with # are ignored. Everything here is cross-platform and
+# mirrors the macOS live-in-terminal stack.
+
+ajeetdsouza.zoxide        # zoxide  -> smart cd (`z`)
+sharkdp.bat               # bat     -> better cat + colorized help
+jesseduffield.lazygit     # lazygit -> git TUI (`lg`)
+atuinsh.atuin             # atuin   -> Ctrl+R history search
+junegunn.fzf              # fzf     -> fuzzy finder
+sxyazi.yazi               # yazi    -> terminal file manager (`y`)
+
+# Editor (matches EDITOR=nvim on the Mac). Comment out if you use another.
+Neovim.Neovim             # nvim
