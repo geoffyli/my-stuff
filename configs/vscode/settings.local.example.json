@@ -1,0 +1,23 @@
+{
+  // ============================================================
+  // SECRETS TEMPLATE — copy to settings.local.json (GITIGNORED),
+  // fill real values, and the apply script merges it in LAST so
+  // it wins. NEVER commit settings.local.json.
+  // ============================================================
+
+  // OpenAI key for whisper-assistant. Get from platform.openai.com.
+  "whisper-assistant.apiKey": "sk-REPLACE_ME",
+  "whisper-assistant.apiProvider": "openai",
+
+  // Private ChatGPT proxy (if used).
+  "chatgpt.apiBase": "https://REPLACE_ME/v1",
+  "chatgpt.config": {
+    "preferred_auth_method": "apikey",
+    "model": "gpt-5-codex",
+    "model_reasoning_effort": "high",
+    "wire_api": "responses"
+  },
+
+  // Gemini Code Assist GCP project id.
+  "geminicodeassist.project": "REPLACE_ME"
+}

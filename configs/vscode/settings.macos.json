@@ -1,0 +1,8 @@
+{
+  // ============================================================
+  // macOS-ONLY settings. Merged on top of settings.shared.json.
+  // ============================================================
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.external.osxExec": "iTerm.app",
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3"
+}

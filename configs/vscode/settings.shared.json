@@ -1,0 +1,363 @@
+{
+  // ============================================================
+  // SHARED SETTINGS — universal across all machines/OSes.
+  // Secrets and machine-specific paths live in the OS files and
+  // settings.local.json (see README). Do NOT put API keys here.
+  // ============================================================
+
+  // --- Editor ---
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.suggestSelection": "first",
+  "editor.minimap.renderCharacters": false,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.linkedEditing": true,
+  "editor.mouseWheelZoom": true,
+  "editor.accessibilitySupport": "off",
+  "editor.unicodeHighlight.nonBasicASCII": false,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "editor.unicodeHighlight.allowedLocales": {
+    "zh-hans": true
+  },
+
+  // --- Files ---
+  "files.autoSave": "afterDelay",
+  "files.autoGuessEncoding": true,
+  "files.associations": {
+    "**/SKILL.md": "markdown"
+  },
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+
+  // --- Workbench / theme ---
+  "workbench.colorTheme": "Atom One Dark",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.editor.navigationScope": "editor",
+  "workbench.secondarySideBar.showLabels": false,
+  "window.commandCenter": false,
+
+  // --- Explorer ---
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+
+  // --- Git ---
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "git.ignoreRebaseWarning": true,
+  "git.openRepositoryInParentFolders": "never",
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gemini-2.5-pro",
+  "diffEditor.ignoreTrimWhitespace": true,
+
+  // --- Terminal (OS-neutral bits; default profiles live in OS files) ---
+  "terminal.integrated.altClickMovesCursor": false,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+
+  // --- Language tooling ---
+  "java.semanticHighlighting.enabled": true,
+  "java.requirements.JDK11Warning": false,
+  "python.analysis.typeCheckingMode": "basic",
+  "svelte.enable-ts-plugin": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "docker.extension.enableComposeLanguageServer": false,
+  "security.workspace.trust.untrustedFiles": "open",
+
+  // --- Per-language formatters ---
+  "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[vue]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[svelte]": { "editor.defaultFormatter": "svelte.svelte-vscode" },
+  "[python]": { "editor.defaultFormatter": "ms-python.black-formatter" },
+  "[json]": { "editor.defaultFormatter": "vscode.json-language-features" },
+  "[c]": { "editor.defaultFormatter": "ms-vscode.cpptools" },
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": { "editor.defaultFormatter": "redhat.vscode-yaml" },
+  "[markdown]": {
+    "editor.formatOnSave": false,
+    "editor.fontFamily": "'Merriweather', Georgia, serif",
+    "editor.fontSize": 16,
+    "editor.lineHeight": 1.7,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 100
+  },
+
+  // --- YAML schema ---
+  "yaml.disableSchemaDetection": [
+    "**/.github/workflows/*.yml",
+    "**/.github/workflows/*.yaml",
+    "**/.gitea/workflows/*.yml",
+    "**/.gitea/workflows/*.yaml",
+    "**/.forgejo/workflows/*.yml",
+    "**/.forgejo/workflows/*.yaml"
+  ],
+  "json.schemaDownload.trustedDomains": {
+    "https://schemastore.azurewebsites.net/": true,
+    "https://raw.githubusercontent.com/": true,
+    "https://www.schemastore.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://json-schema.org/": true,
+    "https://opencode.ai": true,
+    "https://opencode.ai/config.json": true,
+    "https://models.dev": true
+  },
+
+  // --- AI chat (Copilot / Claude / agents) ---
+  "chat.useAgentSkills": true,
+  "chat.useNestedAgentsMdFiles": true,
+  "chat.agent.maxRequests": 200,
+  "chat.customAgentInSubagent.enabled": true,
+  "claudeCode.preferredLocation": "panel",
+  "claudeCode.selectedModel": "default",
+  "github.copilot.nextEditSuggestions.enabled": true,
+
+  // --- Markdown syntax color customizations (Atom One Dark) ---
+  "workbench.colorCustomizations": {
+    "[Atom One Dark]": {}
+  },
+  "editor.tokenColorCustomizations": {
+    "[Atom One Dark]": {
+      "textMateRules": [
+        {
+          "scope": [
+            "markup.heading",
+            "markup.heading.1.markdown",
+            "markup.heading.2.markdown",
+            "markup.heading.3.markdown",
+            "markup.heading.4.markdown",
+            "markup.heading.5.markdown",
+            "markup.heading.6.markdown",
+            "entity.name.section.markdown",
+            "punctuation.definition.heading.markdown"
+          ],
+          "settings": { "foreground": "#A0A8B8", "fontStyle": "bold" }
+        },
+        {
+          "scope": ["markup.bold", "punctuation.definition.bold"],
+          "settings": { "foreground": "#C5CBD8", "fontStyle": "bold" }
+        },
+        {
+          "scope": ["markup.italic", "punctuation.definition.italic"],
+          "settings": { "foreground": "#C5CBD8", "fontStyle": "italic" }
+        },
+        {
+          "scope": [
+            "markup.inline.raw.string",
+            "punctuation.definition.raw.markdown",
+            "markup.raw.block"
+          ],
+          "settings": { "foreground": "#8899AA" }
+        },
+        {
+          "scope": "punctuation.definition.list.begin.markdown",
+          "settings": { "foreground": "#7A8494" }
+        },
+        {
+          "scope": "markup.underline.link",
+          "settings": { "foreground": "#6B9FD4" }
+        },
+        {
+          "scope": [
+            "meta.frontmatter",
+            "meta.frontmatter keyword",
+            "meta.frontmatter string",
+            "meta.frontmatter entity.name.tag",
+            "meta.frontmatter punctuation",
+            "entity.name.tag.yaml",
+            "punctuation.separator.key-value.yaml",
+            "punctuation.definition.string.begin.yaml",
+            "punctuation.definition.string.end.yaml",
+            "punctuation.definition.block.sequence.item.yaml",
+            "punctuation.definition.sequence.begin.yaml",
+            "punctuation.definition.sequence.end.yaml",
+            "punctuation.definition.mapping.begin.yaml",
+            "punctuation.definition.mapping.end.yaml",
+            "string.unquoted.plain.out.yaml",
+            "string.unquoted.plain.in.yaml",
+            "string.quoted.single.yaml",
+            "string.quoted.double.yaml",
+            "constant.language.boolean.yaml",
+            "constant.numeric.integer.yaml",
+            "meta.tag.yaml",
+            "punctuation.separator.sequence.yaml",
+            "punctuation.separator.mapping.yaml"
+          ],
+          "settings": { "foreground": "#7A8494" }
+        },
+        {
+          "scope": [
+            "string.other.link.title.markdown",
+            "meta.link.inline.markdown",
+            "punctuation.definition.link",
+            "markup.underline.link.image.markdown",
+            "meta.embedded.block.frontmatter",
+            "punctuation.definition.wikiLink",
+            "punctuation.definition.wiki-link",
+            "punctuation.wikilink",
+            "string.other.wikiLink",
+            "string.other.wiki-link",
+            "meta.wikiLink",
+            "meta.wiki-link",
+            "markup.underline.link.wikiLink",
+            "keyword.other.wikiLink",
+            "text.html.markdown meta.wikilink",
+            "punctuation.section.brackets.begin",
+            "punctuation.section.brackets.end",
+            "punctuation.definition.metadata.markdown.foam",
+            "punctuation.definition.metadata.markdown",
+            "meta.link.wikilink.markdown.foam",
+            "string.other.link.title.markdown.foam"
+          ],
+          "settings": { "foreground": "#7A8494" }
+        }
+      ]
+    }
+  },
+
+  // --- Agent terminal auto-approve rules (OS-agnostic; safe read-only) ---
+  "chat.tools.terminal.autoApprove": {
+    "python3": true,
+    "mvn": true,
+    "mkdir": true,
+    "javap": true,
+    "test": true,
+    "cd": true,
+    "echo": true,
+    "ls": true,
+    "dir": true,
+    "pwd": true,
+    "cat": true,
+    "head": true,
+    "tail": true,
+    "findstr": true,
+    "wc": true,
+    "tr": true,
+    "cut": true,
+    "cmp": true,
+    "which": true,
+    "basename": true,
+    "dirname": true,
+    "realpath": true,
+    "readlink": true,
+    "stat": true,
+    "file": true,
+    "od": true,
+    "du": true,
+    "df": true,
+    "sleep": true,
+    "nl": true,
+    "grep": true,
+    "/^git(\\s+(-C\\s+\\S+|--no-pager))*\\s+status\\b/": true,
+    "/^git(\\s+(-C\\s+\\S+|--no-pager))*\\s+log\\b/": true,
+    "/^git(\\s+(-C\\s+\\S+|--no-pager))*\\s+log\\b.*\\s--output(=|\\s|$)/": false,
+    "/^git(\\s+(-C\\s+\\S+|--no-pager))*\\s+show\\b/": true,
+    "/^git(\\s+(-C\\s+\\S+|--no-pager))*\\s+diff\\b/": true,
+    "/^git(\\s+(-C\\s+\\S+|--no-pager))*\\s+ls-files\\b/": true,
+    "/^git(\\s+(-C\\s+\\S+|--no-pager))*\\s+grep\\b/": true,
+    "/^git(\\s+(-C\\s+\\S+|--no-pager))*\\s+branch\\b/": true,
+    "/^git(\\s+(-C\\s+\\S+|--no-pager))*\\s+branch\\b.*\\s-(d|D|m|M|-delete|-force)\\b/": false,
+    "/^docker\\s+(ps|images|info|version|inspect|logs|top|stats|port|diff|search|events)\\b/": true,
+    "/^docker\\s+(container|image|network|volume|context|system)\\s+(ls|ps|inspect|history|show|df|info)\\b/": true,
+    "/^docker\\s+compose\\s+(ps|ls|top|logs|images|config|version|port|events)\\b/": true,
+    "Get-ChildItem": true,
+    "Get-Content": true,
+    "Get-Date": true,
+    "Get-Random": true,
+    "Get-Location": true,
+    "Set-Location": true,
+    "Write-Host": true,
+    "Write-Output": true,
+    "Out-String": true,
+    "Split-Path": true,
+    "Join-Path": true,
+    "Start-Sleep": true,
+    "Where-Object": true,
+    "/^Select-[a-z0-9]/i": true,
+    "/^Measure-[a-z0-9]/i": true,
+    "/^Compare-[a-z0-9]/i": true,
+    "/^Format-[a-z0-9]/i": true,
+    "/^Sort-[a-z0-9]/i": true,
+    "/^npm\\s+(ls|list|outdated|view|info|show|explain|why|root|prefix|bin|search|doctor|fund|repo|bugs|docs|home|help(-search)?)\\b/": true,
+    "/^npm\\s+config\\s+(list|get)\\b/": true,
+    "/^npm\\s+pkg\\s+get\\b/": true,
+    "/^npm\\s+audit$/": true,
+    "/^npm\\s+cache\\s+verify\\b/": true,
+    "/^yarn\\s+(list|outdated|info|why|bin|help|versions)\\b/": true,
+    "/^yarn\\s+licenses\\b/": true,
+    "/^yarn\\s+audit\\b(?!.*\\bfix\\b)/": true,
+    "/^yarn\\s+config\\s+(list|get)\\b/": true,
+    "/^yarn\\s+cache\\s+dir\\b/": true,
+    "/^pnpm\\s+(ls|list|outdated|why|root|bin|doctor)\\b/": true,
+    "/^pnpm\\s+licenses\\b/": true,
+    "/^pnpm\\s+audit\\b(?!.*\\bfix\\b)/": true,
+    "/^pnpm\\s+config\\s+(list|get)\\b/": true,
+    "npm ci": true,
+    "/^yarn\\s+install\\s+--frozen-lockfile\\b/": true,
+    "/^pnpm\\s+install\\s+--frozen-lockfile\\b/": true,
+    "column": true,
+    "/^column\\b.*\\s-c\\s+[0-9]{4,}/": false,
+    "date": true,
+    "/^date\\b.*\\s(-s|--set)\\b/": false,
+    "find": true,
+    "/^find\\b.*\\s-(delete|exec|execdir|fprint|fprintf|fls|ok|okdir)\\b/": false,
+    "rg": true,
+    "/^rg\\b.*\\s(--pre|--hostname-bin)\\b/": false,
+    "sed": true,
+    "/^sed\\b.*\\s(-[a-zA-Z]*(e|f)[a-zA-Z]*|--expression|--file)\\b/": false,
+    "/^sed\\b.*s\\/.*\\/.*\\/[ew]/": false,
+    "/^sed\\b.*;W/": false,
+    "sort": true,
+    "/^sort\\b.*\\s-(o|S)\\b/": false,
+    "tree": true,
+    "/^tree\\b.*\\s-o\\b/": false,
+    "/^xxd$/": true,
+    "/^xxd\\b(\\s+-\\S+)*\\s+[^-\\s]\\S*$/": true,
+    "rm": false,
+    "rmdir": false,
+    "del": false,
+    "Remove-Item": false,
+    "ri": false,
+    "rd": false,
+    "erase": false,
+    "dd": false,
+    "kill": false,
+    "ps": false,
+    "top": false,
+    "Stop-Process": false,
+    "spps": false,
+    "taskkill": false,
+    "taskkill.exe": false,
+    "curl": false,
+    "wget": false,
+    "Invoke-RestMethod": false,
+    "Invoke-WebRequest": false,
+    "irm": false,
+    "iwr": false,
+    "chmod": false,
+    "chown": false,
+    "Set-ItemProperty": false,
+    "sp": false,
+    "Set-Acl": false,
+    "jq": false,
+    "xargs": false,
+    "eval": false,
+    "Invoke-Expression": false,
+    "iex": false
+  }
+}

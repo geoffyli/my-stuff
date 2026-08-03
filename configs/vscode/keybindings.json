@@ -1,0 +1,23 @@
+// See KEYBINDINGS-SNIPPETS.md for what these do.
+[
+    {
+        // Ctrl+Enter in terminal: send a literal backslash + newline
+        // (line continuation for shell / REPL commands).
+        "key": "ctrl+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "when": "terminalFocus",
+        "args": {
+            "text": "\\\r\n"
+        }
+    },
+    {
+        // Shift+Enter in terminal: send ESC + CR. Used by some TUIs /
+        // agent CLIs to insert a newline without submitting.
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u001b\r"
+        },
+        "when": "terminalFocus"
+    }
+]

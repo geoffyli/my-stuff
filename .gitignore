@@ -1,2 +1,6 @@
 .history
 .vscode
+
+# VS Code config: machine-local secrets (never commit)
+configs/vscode/settings.local.json
+configs/vscode/settings.json.bak.*

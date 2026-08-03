@@ -1,0 +1,67 @@
+# Curated core VS Code extensions.
+# Install all with: cat extensions-core.txt | grep -v '^#' | grep . | xargs -L1 code --install-extension
+# (the apply scripts do this for you)
+# Lines starting with # are comments and ignored.
+
+# --- Formatting / linting ---
+esbenp.prettier-vscode
+dbaeumer.vscode-eslint
+editorconfig.editorconfig
+
+# --- Git ---
+eamodio.gitlens
+donjayamanne.githistory
+github.vscode-pull-request-github
+
+# --- Theme / icons / UI ---
+akamud.vscode-theme-onedark
+pkief.material-icon-theme
+oderwat.indent-rainbow
+naumovs.color-highlight
+aaron-bond.better-comments
+
+# --- Editor helpers ---
+christian-kohler.path-intellisense
+christian-kohler.npm-intellisense
+alefragnani.bookmarks
+formulahendry.auto-rename-tag
+formulahendry.code-runner
+humao.rest-client
+mikestead.dotenv
+mechatroner.rainbow-csv
+
+# --- AI assistants ---
+anthropic.claude-code
+saoudrizwan.claude-dev
+github.vscode-github-actions
+google.geminicodeassist
+google.gemini-cli-vscode-ide-companion
+
+# --- Markdown ---
+yzhang.markdown-all-in-one
+bierner.markdown-mermaid
+
+# --- Python ---
+ms-python.python
+ms-python.vscode-pylance
+ms-python.black-formatter
+ms-python.debugpy
+ms-toolsai.jupyter
+
+# --- Java ---
+vscjava.vscode-java-pack
+
+# --- C / C++ ---
+ms-vscode.cpptools-extension-pack
+
+# --- Web (Vue / Svelte / Tailwind) ---
+vue.volar
+svelte.svelte-vscode
+bradlc.vscode-tailwindcss
+
+# --- Config formats ---
+redhat.vscode-yaml
+tamasfe.even-better-toml
+
+# --- Docker ---
+docker.docker

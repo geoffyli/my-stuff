@@ -1,0 +1,13 @@
+{
+  // ============================================================
+  // Windows-ONLY settings. Merged on top of settings.shared.json.
+  // Adjust python path to your actual install (see WINDOWS-CHEATSHEET.md).
+  // ============================================================
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+
+  // Point at your Windows Python. Common options:
+  //   "C:\\Python312\\python.exe"
+  //   "%LOCALAPPDATA%\\Programs\\Python\\Python312\\python.exe"
+  // Leave empty to let the Python extension auto-detect.
+  "python.defaultInterpreterPath": ""
+}
