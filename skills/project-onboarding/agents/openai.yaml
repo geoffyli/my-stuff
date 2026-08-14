@@ -1,0 +1,18 @@
+interface:
+  display_name: project onboarding
+  short_description: Comprehensively investigate a software project and create a concise,
+    evidence-backed PROJECT_ONBOARDING.md for a new developer, covering business context,
+    technical architecture, developer workflows, prioritized learning, and a capability-based
+    onboarding roadmap. Use when the user asks to onboard to, understand, explore,
+    map, or create an onboarding guide for a repository or software project, optionally
+    using user-provided documentation or connected project sources. Do not use for
+    isolated code explanations, routine code review, or general technology tutorials.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
