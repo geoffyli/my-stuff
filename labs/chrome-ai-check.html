@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chrome 内置 AI 检测</title>
+<style>body{font:15px/1.65 system-ui,sans-serif;background:#f3f5f9;color:#17243b;margin:0}main{max-width:980px;margin:40px auto;padding:0 22px}h1{font-size:28px}section{background:white;border:1px solid #dce2eb;border-radius:14px;padding:20px;margin:16px 0}button,select{font:inherit;padding:8px 13px;border:1px solid #bac7dc;border-radius:8px;background:white;margin:4px;cursor:pointer}button:disabled{opacity:.45;cursor:default}.primary{background:#245cd6;color:white}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#eef2f8;padding:14px;border-radius:8px;max-height:400px;overflow:auto}small,.muted{color:#53647e}table{width:100%;border-collapse:collapse}td,th{text-align:left;border-bottom:1px solid #e3e8f0;padding:9px}progress{width:100%}code{overflow-wrap:anywhere}.notice{background:#fff4d9;padding:12px;border-radius:8px}</style>
+<main><h1>Chrome 内置 AI 检测</h1><p>检测当前页面能否访问接口、下载模型并完成一次真实推理。单文件，无外部脚本、遥测或云端模型调用。</p>
+<section><h2>1 · 环境与接口</h2><pre id="env"></pre><button id="refresh">重新检测</button><table><thead><tr><th>接口</th><th>状态</th></tr></thead><tbody id="apis"></tbody></table><p class="muted">“未暴露”不等于硬件不支持：也可能是 Chrome 版本、页面环境、公司策略或试验功能限制。检测不会自动下载模型。</p></section>
+<section><h2>2 · 下载并实际测试</h2><p>选择接口后点击按钮。首次运行可能下载数 GB 模型。请保持页面打开。</p><select id="choice" aria-label="选择接口"></select><button class="primary" id="run">下载 / 初始化并测试</button><button id="cancel" disabled>取消当前操作</button><progress id="progress" max="1" value="0"></progress><p id="status" role="status" aria-live="polite">尚未运行</p><pre id="output">模型输出将显示在这里。</pre><p class="muted">Prompt、摘要、写作与校对使用英文测试；翻译测试为英语 → 西班牙语。成功仅代表此接口和配置可用，不代表其他语言或多模态也可用。页面不能选择或列举所有模型权重。</p></section>
+<section><h2>3 · 诊断记录</h2><button id="copy">复制诊断记录</button><pre id="log"></pre><div class="notice">如果失败：先查看原始错误，再手动打开 <code>chrome://version</code>、<code>chrome://on-device-internals</code> 和 <code>chrome://policy</code>。网页不能读取企业策略，也无法确定下载是否被公司网络拦截。无需修改策略或开启实验开关。</div><p>若通过双击文件打开失败，可在允许的环境中通过 HTTPS 或 localhost 再试。不要把 file:// 下的失败直接当作设备不支持。</p><p>官方文档：<a href="https://developer.chrome.com/docs/ai/prompt-api" target="_blank" rel="noopener">Prompt API</a> · <a href="https://developer.chrome.com/docs/ai/built-in-apis" target="_blank" rel="noopener">接口状态</a></p></section></main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const english={expectedInputs:[{type:'text',languages:['en']}],expectedOutputs:[{type:'text',languages:['en']}]};
+const defs=[
+ {name:'LanguageModel',label:'Prompt · Gemini Nano',opts:english,call:s=>s.prompt('Reply with exactly: Local AI works.')},
+ {name:'Summarizer',label:'Summarizer · 摘要',opts:{type:'key-points',format:'plain-text',length:'short',expectedInputLanguages:['en'],outputLanguage:'en'},call:s=>s.summarize('A team built a browser tool. It processes text locally. The tool can work offline after its model has downloaded.')},
+ {name:'Translator',label:'Translator · 翻译',opts:{sourceLanguage:'en',targetLanguage:'es'},call:s=>s.translate('Hello, the local model works.')},
+ {name:'LanguageDetector',label:'Language Detector · 语言检测',opts:{},call:s=>s.detect('This is an English sentence about a local browser model.')},
+ {name:'Writer',label:'Writer · 写作（可能需试验资格）',opts:{outputLanguage:'en'},call:s=>s.write('Write one short English sentence welcoming a new colleague.')},
+ {name:'Rewriter',label:'Rewriter · 改写（可能需试验资格）',opts:{outputLanguage:'en'},call:s=>s.rewrite('The local browser tool is useful and it works on this computer.')},
+ {name:'Proofreader',label:'Proofreader · 校对（可能需试验资格）',opts:{},call:s=>s.proofread('This tool work on my computer.')}
+];
+const labels={available:'可直接初始化',downloadable:'可尝试下载',downloading:'正在下载',unavailable:'此环境 / 配置不可用'};
+let controller=null,session=null,busy=false,lines=[];
+function log(text){lines.push(new Date().toLocaleTimeString()+' '+text);$('log').textContent=lines.join('\n');}
+function err(e){return (e.name||'Error')+': '+(e.message||String(e));}
+function environment(){return '时间：'+new Date().toISOString()+'\n协议：'+location.protocol+'\n安全上下文：'+isSecureContext+'\n逻辑核心（浏览器报告）：'+(navigator.hardwareConcurrency||'未知')+'\n内存粗略值（GB，可能隐藏或封顶）：'+(navigator.deviceMemory||'未提供')+'\n浏览器：'+navigator.userAgent;}
+async function scan(){
+ $('env').textContent=environment();$('apis').replaceChildren();log('开始接口检查（不创建会话）');
+ await Promise.all(defs.map(async d=>{const tr=document.createElement('tr'),name=document.createElement('td'),value=document.createElement('td');name.textContent=d.name;value.textContent='检测中…';tr.append(name,value);$('apis').append(tr);
+ const api=globalThis[d.name];if(!api){value.textContent='未暴露';log(d.name+': 未暴露');return;}
+ if(typeof api.availability!=='function'){value.textContent='接口存在，但无当前 availability()';log(d.name+': 当前方法不可用');return;}
+ try{const result=await Promise.race([api.availability(d.opts),new Promise((_,reject)=>setTimeout(()=>reject(new Error('状态检查超过 15 秒；不代表不支持')),15000))]);value.textContent=(labels[result]||'未知状态')+' · '+result;log(d.name+': '+result);}catch(e){value.textContent=err(e);log(d.name+' '+err(e));}}));
+}
+defs.forEach(d=>{const o=document.createElement('option');o.value=d.name;o.textContent=d.label;$('choice').append(o);});
+function controls(on){busy=on;$('run').disabled=on;$('choice').disabled=on;$('refresh').disabled=on;$('cancel').disabled=!on;}
+$('run').onclick=async()=>{
+ if(busy)return;const d=defs.find(x=>x.name===$('choice').value),api=globalThis[d.name];
+ if(!api||typeof api.create!=='function'){log(d.name+': 接口未暴露，无法初始化');$('status').textContent='接口未暴露，请查看诊断记录。';return;}
+ controls(true);controller=new AbortController();const local=controller;session=null;$('progress').value=0;$('output').textContent='';$('status').textContent='正在初始化；可能需要下载模型…';log('创建 '+d.name+'；配置 '+JSON.stringify(d.opts));
+ try{
+ // Directly call create in the click handler to preserve user activation.
+ session=await api.create({...d.opts,signal:local.signal,monitor(m){m.addEventListener('downloadprogress',e=>{if(local.signal.aborted)return;const ratio=e.total>1?e.loaded/e.total:e.loaded;if(Number.isFinite(ratio)){$('progress').value=Math.min(1,Math.max(0,ratio));$('status').textContent='下载进度：'+Math.round($('progress').value*100)+'%';}});}});
+ if(local.signal.aborted)throw new DOMException('已取消','AbortError');
+ $('progress').value=1;$('status').textContent='初始化成功，正在执行真实推理…';log('初始化成功');
+ const result=await d.call(session);if(local.signal.aborted)throw new DOMException('已取消','AbortError');
+ $('output').textContent=typeof result==='string'?result:JSON.stringify(result,null,2);$('status').textContent='成功：'+d.name+' 已完成真实推理。';log(d.name+' 推理成功');
+ }catch(e){$('status').textContent='操作未完成：'+err(e);log(d.name+' '+err(e));}
+ finally{try{session?.destroy?.();}catch(e){log('清理：'+err(e));}session=null;controller=null;controls(false);}
+};
+$('cancel').onclick=()=>{controller?.abort();try{session?.destroy?.();}catch{}$('status').textContent='已请求取消，等待浏览器结束操作…';log('用户请求取消；共享模型下载可能由浏览器继续管理');};
+$('refresh').onclick=scan;
+$('copy').onclick=async()=>{const report=environment()+'\n\n'+lines.join('\n');try{await navigator.clipboard.writeText(report);$('copy').textContent='已复制';}catch{$('log').focus();log('剪贴板不可用，请手动选择诊断记录复制。');}};
+scan();
+</script></html>
