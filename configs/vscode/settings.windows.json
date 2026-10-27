@@ -5,6 +5,25 @@
   // ============================================================
   "terminal.integrated.defaultProfile.windows": "Git Bash",
 
+  // --- Terminal TUIs over Remote-SSH (see configs/gcw-terminal/README.md) ---
+  // Ctrl+K is a VS Code chord prefix. Send it to the terminal (nvim <C-k>).
+  "terminal.integrated.allowChords": false,
+  // Alt+j / Alt+k in nvim: stop Alt from focusing the menu bar.
+  "window.enableMenuBarMnemonics": false,
+  "window.customMenuBarAltFocus": false,
+  // Let VS Code draw inline images (yazi image preview).
+  "terminal.integrated.enableImages": true,
+  // No Nerd Font on this machine: use a plain monospace font.
+  "terminal.integrated.fontFamily": "'Cascadia Mono', Consolas, monospace",
+  "terminal.integrated.scrollback": 10000,
+  // Send these keys to the shell when the terminal has focus.
+  // Each "-<command>" removes that command from the skip list.
+  "terminal.integrated.commandsToSkipShell": [
+    "-workbench.action.quickOpen",               // Ctrl+P: previous history line, Ctrl+E: end of line
+    "-workbench.action.togglePanel",             // Ctrl+J: nvim window down
+    "-workbench.action.toggleSidebarVisibility"  // Ctrl+B: back one char
+  ],
+
   // Point at your Windows Python. Common options:
   //   "C:\\Python312\\python.exe"
   //   "%LOCALAPPDATA%\\Programs\\Python\\Python312\\python.exe"

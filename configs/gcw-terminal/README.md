@@ -803,9 +803,8 @@ Notes:
   This sends almost all keys to the shell. The cost: most VS Code shortcuts
   stop working while the terminal has focus. F1 still opens the command
   palette.
-- The `my-stuff` repo keeps Windows VS Code settings in
-  `configs/vscode/settings.windows.json`. Add these keys there to keep them
-  in sync.
+- These keys are already in `configs/vscode/settings.windows.json` in the
+  `my-stuff` repo. On Windows, run `configs/vscode/apply.ps1` to apply them.
 
 ---
 
